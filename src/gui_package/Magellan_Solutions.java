@@ -93,13 +93,14 @@ public class Magellan_Solutions extends JFrame {
 
         if (users.validateUser(username, password, selectedRole)) {
             JOptionPane.showMessageDialog(this, "Login successful! Welcome, " + selectedRole + "!");
-            redirectToSection(selectedRole);
+            redirectToSection(selectedRole, username);
             dispose(); 
         } else {
             JOptionPane.showMessageDialog(this, "Invalid credentials. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void redirectToSection(String role) {
+    
+    private void redirectToSection(String role, String username) {
         switch (role) {
             case "Admin":
                 new AdminSection(users).setVisible(true);
@@ -109,7 +110,7 @@ public class Magellan_Solutions extends JFrame {
                 break;
             case "Customer Service Department":
             case "IT Department":
-                new EmployeeSection().setVisible(true);
+                new EmployeeSection(users, username).setVisible(true);
                 break;
         }
     }
@@ -161,6 +162,7 @@ class Users {
         addUser("John Razec", "Agno", "manager@gmail.com", "Manager", "12345");
         addUser("Justine Cedrick", "Ambal", "salesrep1@gmail.com", "Customer Service Department", "12345");
         addUser("Christine Grace", "Mendoza", "it1@gmail.com", "IT Department", "12345");
+
     }
 
     public boolean validateUser(String email, String password, String role) {
@@ -221,5 +223,3 @@ class Users {
 
 
 }
-
-
