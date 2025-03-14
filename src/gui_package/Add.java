@@ -161,16 +161,11 @@ public Add(Users users) {
 
         //ONCE THE TRANSACTION/INPUTTING OF VALUES IS DONE
         users.addUser(firstName, lastName, email, role, password);
-        
-        // LOGGIN THIS ONE OUT HUHU TOOK ME YEARS JUST TO CREATE THIS ONE LINER.. 
-        LogsHandler.addLog("Admin added new user: " + email);
-
 
         JOptionPane.showMessageDialog(this, "User successfully added!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         dispose();
         new AdminSection(users).setVisible(true);
-        
     }
 	
 

@@ -17,9 +17,19 @@ public class Delete extends JFrame {
     private DefaultTableModel tableModel;
     private Users users; 
 
-    private String deletedEmail = "";
-    
-
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                Delete frame = new Delete(new Users());
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     /**
      * Create the frame.
@@ -91,7 +101,6 @@ public class Delete extends JFrame {
                     tableModel.setRowCount(0); // Clear table
                     tableModel.addRow(new Object[]{user[0], user[1], user[2], user[3]});
                     deleteUserButton.setEnabled(true);
-                    deletedEmail =  user[2];
                 } else {
                     foundLbl.setText("User Not Found.");
                     tableModel.setRowCount(0);
@@ -121,8 +130,6 @@ public class Delete extends JFrame {
 
 
         backButton.addActionListener(e -> {
-            // LOGGIN THIS ONE OUT HUHU TOOK ME YEARS JUST TO CREATE THIS ONE LINER.. 
-            LogsHandler.addLog("Admin deleted user: " + deletedEmail);
             dispose(); 
             new AdminSection(users).setVisible(true); 
         });
