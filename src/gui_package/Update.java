@@ -19,13 +19,23 @@ public class Update extends JFrame {
     private JComboBox<String> roleComboBox;
     private JLabel foundLbl;
     private JLabel errPasswordLbl;
-    private Users users;  
+    private Users users;  // Reference to Users class
 
-    private String oldTxt = "";
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Update frame = new Update();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-
-    public Update(Users users) {
-        this.users = users; 
+    public Update() {
+        users = new Users();  // Initialize Users class
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 500);
@@ -131,7 +141,6 @@ public class Update extends JFrame {
                     lastNameTxt.setText(user[1]); // lnamee
                     passwordTxt.setText(user[4]); // Password of user
                     roleComboBox.setSelectedItem(user[3]); // Role/ deptt
-                    oldTxt = user[2];
                 }
             }
         });
@@ -152,7 +161,6 @@ public class Update extends JFrame {
 
                 users.updateUser(email, firstName, lastName, role, password);
                 foundLbl.setText("User updated successfully!");
-                LogsHandler.addLog("Admin updated user: " + oldTxt);
             }
         });
 
