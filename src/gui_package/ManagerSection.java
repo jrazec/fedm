@@ -99,7 +99,7 @@ public class ManagerSection extends JFrame {
         updateButton.setBounds(600, 350, 120, 30);
         contentPane.add(updateButton);
 
-        JButton backButton = new JButton("Back");
+        JButton backButton = new JButton("Log Out");
         backButton.setBounds(30, 400, 100, 30);
         contentPane.add(backButton);
 
